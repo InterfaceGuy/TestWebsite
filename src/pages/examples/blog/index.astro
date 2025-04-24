@@ -1,0 +1,30 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+const posts = await Astro.glob('./**/*.md')
+---
+
+<Layout pageTitle="Blog in markdown">
+  <h1 class="text-xl mb-2">Blog index</h1>
+  <p class="mb-5">This blog section is created from markdown (.md) files</p>
+  {
+    posts.map(post => (
+      <div class="link-wrapper">
+        <a href={post.url} class="link">
+          {post.frontmatter.pageTitle}
+        </a>
+      </div>
+    ))
+  }
+</Layout>
+
+<style>
+  .link-wrapper {
+    margin-bottom: 0.5rem;
+    padding: 0.25rem;
+    background-color: antiquewhite;
+  }
+  .link {
+    color: black;
+    text-decoration: none;
+  }
+</style>

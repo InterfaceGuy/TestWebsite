@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+const hobbiesList = ['read', 'music', 'sports']
+
+const isActive = false
+---
+
+<Layout>
+  <h2 class="mb-2">Server Side Render examples</h2>
+  <p class="mb-3">Array from server:</p>
+  <ul>
+    {hobbiesList.map(hobbie => <li>{hobbie}</li>)}
+  </ul>
+  <hr class="my-4" />
+  <p class="mb-2">Boolean from server:</p>
+  <p>Is active? {isActive ? 'Yes' : 'No'}</p>
+</Layout>

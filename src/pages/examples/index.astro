@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+import LinkCard from '../../components/LinkCard.astro'
+
+console.log('This will be shown in server console')
+const h2 = 'Variable from Server'
+const h2Color = '#cac5c5'
+
+// TO-DO: where do I get page parameter from??
+const childrenPages = await Astro.glob('./**/*.astro')
+// console.log(childrenPages[0])
+// console.log(Astro)
+---
+
+<style define:vars={{ h2Color }}>
+  .h2 {
+    color: var(--h2Color);
+  }
+</style>
+
+<script>
+  // console.log('This will be shown in browser console')
+</script>
+
+<Layout>
+  <h1 class="title">Examples using Astro Framework</h1>
+  <h2 class="h2 mb-5">Server Side Rendered variable: {h2}</h2>
+
+  {/* childrenPages.map(page => <LinkCard url={page.url} text={page.url} />) */}
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <LinkCard url="/astro-demo/examples/blog" text="Blog" />
+    <LinkCard url="/astro-demo/examples/images" text="Use of images" />
+    <LinkCard
+      url="/astro-demo/examples/fetch-from-external-url"
+      text="Fetch from external URL"
+    />
+    <LinkCard url="/astro-demo/examples/array" text="Array" />
+    <LinkCard url="/astro-demo/examples/react" text="React example" />
+    <LinkCard url="/astro-demo/examples/vue" text="Vue example" />
+  </div>
+</Layout>

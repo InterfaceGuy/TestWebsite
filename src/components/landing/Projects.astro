@@ -1,0 +1,47 @@
+---
+import { projects } from '../../config/projects.json'
+---
+
+<script>
+  const buttons = document.querySelectorAll('.more-info')
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      alert('Not implemented!')
+    })
+  })
+</script>
+
+<section class="flex flex-col p-5 justify-around">
+  <div class="text-center mb-5">
+    <h2 class="text-center font-bold text-4xl mt-10 mb-2">Projects</h2>
+    <p>
+      The content of this section is imported from a JSON object, and
+      destructuring it
+    </p>
+  </div>
+  <div>
+    {
+      projects.map(project => (
+        <div class="flex flex-col sm:flex-row justify-around gap-10 align-center mb-12 text-center sm:text-left">
+          <div class="basis-2/3">
+            <h3 class="mb-4 font-bold text-2xl">{project.title}</h3>
+            <p class="mb-4">{project.description}</p>
+            <button class="more-info bg-indigo-600 px-3 py-2 hover:bg-indigo-500">
+              More info
+            </button>
+          </div>
+          <div class="flex justify-center">
+            <img
+              src={project.image}
+              alt={project.title}
+              class="w-60"
+              width="240"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
