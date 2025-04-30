@@ -1,0 +1,78 @@
+---
+// Placeholder Header Component
+---
+<header class="site-header">
+  <div class="container header-container">
+    <div class="logo">
+      <a href="/">
+        <img src="https://via.placeholder.com/50x50?text=Logo" alt="Youth In The World Logo" />
+        <span>Youth In The World</span>
+      </a>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#opportunities">Opportunities</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contacts</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher">
+      <span>EN ^</span>
+      <!-- Basic placeholder for language switcher -->
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .logo img {
+    border-radius: 50%;
+  }
+  .main-nav ul {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .main-nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .main-nav a:hover {
+    text-decoration: underline;
+  }
+  .lang-switcher {
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    .main-nav {
+      display: none; /* Hide nav on small screens for simplicity */
+    }
+    .header-container {
+      justify-content: space-between;
+    }
+  }
+</style>

@@ -1,43 +1,149 @@
 ---
-import Footer from '../components/structure/Footer.astro'
-import Header from '../components/structure/Header.astro'
-
 interface Props {
-  pageTitle?: string
-  pageDescription?: string
-  padding?: string
+	title: string;
 }
-const {
-  pageTitle = 'Default title',
-  pageDescription = 'Default description',
-  padding = 'p-5 sm:p-0',
-  prose = false,
-} = Astro.props.frontmatter || Astro.props
 
-let bodyBg = 'bg-slate-800'
-let additionalClass = ''
-if (prose) {
-  bodyBg = 'bg-slate-300'
-  additionalClass = 'prose prose-slate'
-}
+const { title } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/astro-demo/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Landing | {pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-  </head>
-  <body class={`${bodyBg} text-slate-50`}>
-    <div class="flex flex-col h-screen">
-      <Header />
-      <main class={`container sm:my-8 flex-1 ${padding} ${additionalClass}`}>
-        <slot />
-      </main>
-      <Footer />
-    </div>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Youth In The World - Promoting volunteering and international mobility." />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+	</body>
 </html>
+<style is:global>
+	:root {
+		--accent: 136, 58, 234; /* Keeping original accent for now */
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 10, 101;
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 30%,
+			white 60%
+		);
+
+    /* Website specific colors */
+    --color-text: #ffffff;
+    --color-bg: #000000;
+    --color-bg-alt: #2a3a2a; /* Dark Greenish */
+    --color-border: #444444;
+    --color-button-bg: #1a1a1a;
+    --color-button-hover-bg: #333333;
+
+    --font-primary: 'Montserrat', sans-serif;
+	}
+	html {
+		font-family: var(--font-primary);
+		background-color: var(--color-bg);
+    color: var(--color-text);
+    scroll-behavior: smooth;
+	}
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+	h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.2rem; }
+  h3 { font-size: 1.8rem; }
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  section {
+    padding: 4rem 0;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--color-button-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-weight: bold;
+  }
+  .button:hover {
+    background-color: var(--color-button-hover-bg);
+    text-decoration: none;
+  }
+  .grid {
+    display: grid;
+    gap: 2rem;
+  }
+  .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+  .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.5rem; }
+    .grid-cols-2, .grid-cols-3, .grid-cols-4, .grid-cols-5, .grid-cols-6 {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    section {
+      padding: 2rem 0;
+    }
+  }
+
+	code { /* Keep original code styling for now */
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+</style>

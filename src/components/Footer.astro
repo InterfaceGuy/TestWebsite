@@ -1,0 +1,132 @@
+---
+// Placeholder Footer Component
+---
+<footer class="site-footer-bottom">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>YOUTH IN THE WORLD</h3>
+        <p>We share and promote volunteering and international mobility activities that promote learning and social transformation</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram"><img src="https://via.placeholder.com/24?text=I" alt="Instagram"></a>
+          <a href="#" aria-label="Email"><img src="https://via.placeholder.com/24?text=E" alt="Email"></a>
+          <a href="#" aria-label="Link"><img src="https://via.placeholder.com/24?text=L" alt="Link"></a>
+          <a href="#" aria-label="Facebook"><img src="https://via.placeholder.com/24?text=F" alt="Facebook"></a>
+          <a href="#" aria-label="Youtube"><img src="https://via.placeholder.com/24?text=Y" alt="Youtube"></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Start</h4>
+        <ul>
+          <li><a href="#">Opportunities at OMSN</a></li>
+          <li><a href="#">European Solidarity Corps</a></li>
+          <li><a href="#">Youth Exchanges</a></li>
+          <li><a href="#">Youth Technicians Mobility</a></li>
+        </ul>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <form class="contact-form">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message">Comment or Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+
+          <button type="submit" class="button">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom-bar">
+      <p>&copy; {new Date().getFullYear()} Youth In The World. All rights reserved.</p>
+      <div class="lang-switcher-bottom">
+         <span>EN ^</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer-bottom {
+    background-color: #111;
+    padding: 3rem 0 1rem 0;
+    color: #ccc;
+    font-size: 0.9rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .footer-col h3, .footer-col h4 {
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+  .footer-col h3 { font-size: 1.5rem; }
+  .footer-col h4 { font-size: 1.1rem; }
+  .footer-col p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  .footer-col ul li {
+    margin-bottom: 0.5rem;
+  }
+  .footer-col ul a {
+    color: #ccc;
+  }
+  .footer-col ul a:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .social-icons img {
+    border-radius: 4px;
+  }
+  .contact-form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    color: var(--color-text);
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    background-color: #333;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding in width */
+  }
+  .contact-form button {
+    background-color: var(--color-bg-alt); /* Greenish button */
+    border: none;
+  }
+  .contact-form button:hover {
+    background-color: #3a4a3a;
+  }
+  .footer-bottom-bar {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #aaa;
+  }
+</style>

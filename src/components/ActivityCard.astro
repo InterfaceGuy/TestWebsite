@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  iconSrc: string;
+}
+const { title, iconSrc } = Astro.props;
+---
+<div class="activity-card">
+  <img src={iconSrc} alt={`${title} icon`} class="activity-icon"/>
+  <h4>{title}</h4>
+</div>
+
+<style>
+  .activity-card {
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .activity-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem auto;
+    border-radius: 50%; /* Make placeholder circular */
+    object-fit: cover;
+  }
+  .activity-card h4 {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+  imgSrc: string;
+}
+const { quote, name, role, imgSrc } = Astro.props;
+---
+<div class="testimonial-card">
+  <blockquote>"{quote}"</blockquote>
+  <div class="author">
+    <img src={imgSrc} alt={name} class="author-img"/>
+    <div>
+      <p class="author-name">{name}</p>
+      <p class="author-role">{role}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .testimonial-card {
+    border: 1px solid var(--color-border);
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: #1a1a1a; /* Slightly lighter than bg */
+    height: 100%; /* Ensure cards have same height in grid */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .testimonial-card blockquote {
+    margin: 0 0 1.5rem 0;
+    font-style: italic;
+    color: #eee;
+    flex-grow: 1; /* Allow quote to take available space */
+  }
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto; /* Push author to the bottom */
+  }
+  .author-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .author-name {
+    font-weight: bold;
+    margin: 0;
+    color: var(--color-text);
+  }
+  .author-role {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0;
+  }
+</style>
