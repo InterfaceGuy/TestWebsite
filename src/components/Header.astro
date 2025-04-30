@@ -1,28 +1,42 @@
 ---
-// Placeholder Header Component
+const logoUrl = 'https://picsum.photos/seed/mainlogo/50/50'; // Placeholder logo
 ---
 <header class="site-header">
   <div class="container header-container">
     <div class="logo">
       <a href="/">
-        <img src="https://via.placeholder.com/50x50?text=Logo" alt="Youth In The World Logo" />
+        <img src={logoUrl} alt="Youth In The World Logo Placeholder" />
         <span>Youth In The World</span>
       </a>
     </div>
     <nav class="main-nav">
       <ul>
         <li><a href="#opportunities">Opportunities</a></li>
-        <li><a href="#resources">Resources</a></li>
+        <li><a href="#about">About Us</a></li> {/* Updated link to match section ID */}
+        <li><a href="#testimonials">Testimonials</a></li> {/* Added link */}
         <li><a href="#blog">Blog</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#contact">Contacts</a></li>
+        <li><a href="#contact">Contacts</a></li> {/* Link points to Collaboration section */}
       </ul>
     </nav>
     <div class="lang-switcher">
       <span>EN ^</span>
       <!-- Basic placeholder for language switcher -->
     </div>
+    <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
+  <nav class="mobile-nav">
+     <ul>
+        <li><a href="#opportunities">Opportunities</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contacts</a></li>
+      </ul>
+  </nav>
 </header>
 
 <style>
@@ -67,12 +81,89 @@
     font-weight: bold;
   }
 
+  .mobile-nav-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001; /* Above header */
+  }
+  .mobile-nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text);
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .mobile-nav {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below header */
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+   .mobile-nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  /* Mobile Nav Toggle Active State */
+  .mobile-nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .mobile-nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+
   @media (max-width: 768px) {
     .main-nav {
-      display: none; /* Hide nav on small screens for simplicity */
+      display: none; /* Hide desktop nav */
     }
-    .header-container {
-      justify-content: space-between;
+    .mobile-nav-toggle {
+      display: block; /* Show hamburger */
+    }
+    .mobile-nav.active {
+      display: block; /* Show mobile nav when active */
     }
   }
 </style>
+
+<script>
+  const toggleButton = document.querySelector('.mobile-nav-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+
+  if (toggleButton && mobileNav) {
+    toggleButton.addEventListener('click', () => {
+      const isActive = mobileNav.classList.toggle('active');
+      toggleButton.classList.toggle('active', isActive);
+      toggleButton.setAttribute('aria-expanded', isActive.toString());
+    });
+
+    // Close nav when a link is clicked
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+        toggleButton.classList.remove('active');
+        toggleButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

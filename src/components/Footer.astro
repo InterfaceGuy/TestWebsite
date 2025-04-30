@@ -1,5 +1,6 @@
 ---
 // Placeholder Footer Component
+// Using simple text placeholders for social icons
 ---
 <footer class="site-footer-bottom">
   <div class="container">
@@ -8,26 +9,26 @@
         <h3>YOUTH IN THE WORLD</h3>
         <p>We share and promote volunteering and international mobility activities that promote learning and social transformation</p>
         <div class="social-icons">
-          <a href="#" aria-label="Instagram"><img src="https://via.placeholder.com/24?text=I" alt="Instagram"></a>
-          <a href="#" aria-label="Email"><img src="https://via.placeholder.com/24?text=E" alt="Email"></a>
-          <a href="#" aria-label="Link"><img src="https://via.placeholder.com/24?text=L" alt="Link"></a>
-          <a href="#" aria-label="Facebook"><img src="https://via.placeholder.com/24?text=F" alt="Facebook"></a>
-          <a href="#" aria-label="Youtube"><img src="https://via.placeholder.com/24?text=Y" alt="Youtube"></a>
+          <a href="#" aria-label="Instagram">[Insta]</a>
+          <a href="#" aria-label="Email">[Email]</a>
+          <a href="#" aria-label="Link">[Link]</a>
+          <a href="#" aria-label="Facebook">[FB]</a>
+          <a href="#" aria-label="Youtube">[YT]</a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Start</h4>
         <ul>
-          <li><a href="#">Opportunities at OMSN</a></li>
-          <li><a href="#">European Solidarity Corps</a></li>
-          <li><a href="#">Youth Exchanges</a></li>
-          <li><a href="#">Youth Technicians Mobility</a></li>
+          <li><a href="#opportunities">Opportunities at OMSN</a></li> {/* Updated link */}
+          <li><a href="#opportunities">European Solidarity Corps</a></li> {/* Updated link */}
+          <li><a href="#opportunities">Youth Exchanges</a></li> {/* Updated link */}
+          <li><a href="#opportunities">Youth Technicians Mobility</a></li> {/* Updated link */}
         </ul>
         <h4>Resources</h4>
         <ul>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li> {/* Link points to Collaboration section */}
         </ul>
       </div>
       <div class="footer-col">
@@ -93,9 +94,21 @@
     gap: 1rem;
     margin-top: 1rem;
   }
-  .social-icons img {
+  .social-icons a { /* Style text links */
+    color: #ccc;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid #555;
+    padding: 0.2rem 0.5rem;
     border-radius: 4px;
+    background-color: #222;
   }
+   .social-icons a:hover {
+     color: var(--color-text);
+     background-color: #333;
+     text-decoration: none;
+   }
+
   .contact-form label {
     display: block;
     margin-bottom: 0.3rem;
@@ -116,6 +129,13 @@
   .contact-form button {
     background-color: var(--color-bg-alt); /* Greenish button */
     border: none;
+    padding: 0.8rem 1.5rem; /* Match other buttons */
+    color: var(--color-text);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-weight: bold;
   }
   .contact-form button:hover {
     background-color: #3a4a3a;
@@ -128,5 +148,19 @@
     align-items: center;
     font-size: 0.8rem;
     color: #aaa;
+  }
+
+  @media (max-width: 768px) {
+     .footer-grid {
+        grid-template-columns: 1fr; /* Stack columns */
+     }
+     .social-icons {
+        justify-content: center; /* Center icons when stacked */
+     }
+     .footer-bottom-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+     }
   }
 </style>

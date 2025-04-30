@@ -5,6 +5,36 @@ import Footer from '../components/Footer.astro';
 import ActivityCard from '../components/ActivityCard.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+
+// Example URLs (replace with actual ones)
+const activityIcons = {
+  volunteering: 'https://picsum.photos/seed/volunteering/80/80', // Placeholder for Volunteering icon
+  youthExchange: 'https://picsum.photos/seed/exchange/80/80', // Placeholder for Youth Exchange icon
+  technicianMobility: 'https://picsum.photos/seed/mobility/80/80' // Placeholder for Technician Mobility icon
+};
+const aboutLogoUrl = 'https://picsum.photos/seed/aboutlogo/300/300'; // Placeholder for About Us logo
+const visionGraphicUrl = 'https://picsum.photos/seed/vision/800/200'; // Placeholder for Vision graphic
+const testimonialImages = {
+  marcus: 'https://picsum.photos/seed/marcus/50/50',
+  kristine: 'https://picsum.photos/seed/kristine/50/50',
+  bob: 'https://picsum.photos/seed/bob/50/50'
+};
+const articleImages = {
+  article1: 'https://picsum.photos/seed/article1/150/100',
+  article2: 'https://picsum.photos/seed/article2/150/100'
+};
+const collaborationLogos = [
+  'https://picsum.photos/seed/logo1/100/50',
+  'https://picsum.photos/seed/logo2/100/50',
+  'https://picsum.photos/seed/logo3/100/50',
+  'https://picsum.photos/seed/logo4/100/50',
+  'https://picsum.photos/seed/logo5/100/50',
+  'https://picsum.photos/seed/logo6/100/50',
+  'https://picsum.photos/seed/logo7/100/50',
+  'https://picsum.photos/seed/logo8/100/50',
+  'https://picsum.photos/seed/logo9/100/50'
+];
+const heroBackgroundUrl = 'https://picsum.photos/seed/hero/1920/600'; // Placeholder for Hero background
 ---
 
 <Layout title="Youth In The World">
@@ -12,7 +42,7 @@ import ArticleCard from '../components/ArticleCard.astro';
 
 	<main>
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section" style={`background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${heroBackgroundUrl}') no-repeat center center/cover;`}>
       <div class="hero-content container text-center">
         <h1>Youth In The World</h1>
         <p>We share and promote volunteering and international mobility activities that promote learning and social transformation</p>
@@ -27,15 +57,15 @@ import ArticleCard from '../components/ArticleCard.astro';
       <div class="grid grid-cols-3">
         <ActivityCard
           title="Volunteering European Solidarity Corps"
-          iconSrc="https://via.placeholder.com/80/8A2BE2/FFFFFF?text=V"
+          iconSrc={activityIcons.volunteering}
         />
         <ActivityCard
           title="Youth Exchanges"
-          iconSrc="https://via.placeholder.com/80/4682B4/FFFFFF?text=YE"
+          iconSrc={activityIcons.youthExchange}
         />
         <ActivityCard
           title="Youth Technicians Mobility"
-          iconSrc="https://via.placeholder.com/80/00CED1/FFFFFF?text=YTM"
+          iconSrc={activityIcons.technicianMobility}
         />
       </div>
     </section>
@@ -49,7 +79,7 @@ import ArticleCard from '../components/ArticleCard.astro';
           <a href="#" class="button">Know more</a>
         </div>
         <div class="about-image text-center">
-          <img src="https://via.placeholder.com/300x300/cccccc/808080?text=Logo+Alt" alt="O Mundo Somos Nos Logo" style="max-width: 300px; margin: auto; border-radius: 50%;"/>
+          <img src={aboutLogoUrl} alt="O Mundo Somos Nos Logo Placeholder" style="max-width: 300px; margin: auto; border-radius: 50%;"/>
         </div>
       </div>
     </section>
@@ -59,8 +89,7 @@ import ArticleCard from '../components/ArticleCard.astro';
        <h2>Vision</h2>
        <p>We believe that it is possible to build a more supportive, inclusive and intercultural world by connecting individuals from different cultures in volunteering and international mobility activities.</p>
        <div class="vision-graphic">
-         <!-- Placeholder for the complex graphic -->
-         <img src="https://via.placeholder.com/800x200/dddddd/808080?text=Vision+Graphic+Placeholder" alt="Vision Graphic" style="margin-top: 2rem;"/>
+         <img src={visionGraphicUrl} alt="Vision Graphic Placeholder" style="margin-top: 2rem;"/>
        </div>
     </section>
 
@@ -84,19 +113,19 @@ import ArticleCard from '../components/ArticleCard.astro';
           quote="I am very very thankful for this experience with you guys, it was amazing (...) I felt so lucky to have met such amazing people like you. When I stepped foot on that bus, I knew that this is going to be amazing (...) I loved to see and host the cultural nights, I wasn't able to talk to ALL of you, but with the ones I talked it was amazing."
           name="Marcus Torres"
           role="Adam, Youth Exchange 2024"
-          imgSrc="https://via.placeholder.com/50/FFA07A/000000?text=MT"
+          imgSrc={testimonialImages.marcus}
         />
         <TestimonialCard
           quote="I want to say BIG THANK YOU for what are you doing for us! (...) How much we receive from your side and how lucky we are to have you! (...) Being part of this project is a blessing, I feel so safe and satisfied for choosing it, it's like mother's womb and I am so grateful!"
           name="Kristine L"
           role="Kiki, Long-term CES volunteer 2024"
-          imgSrc="https://via.placeholder.com/50/98FB98/000000?text=KL"
+          imgSrc={testimonialImages.kristine}
         />
          <TestimonialCard
           quote="I loved every bit of this week. And especially all of you. I hope everyone had the same amount of fun or even more than I had. I will miss you guys like hell and I will see every one of you again"
           name="Bob Larrat"
           role="Lovisa, Youth Exchange 2024"
-          imgSrc="https://via.placeholder.com/50/ADD8E6/000000?text=BL"
+          imgSrc={testimonialImages.bob}
         />
       </div>
     </section>
@@ -110,13 +139,13 @@ import ArticleCard from '../components/ArticleCard.astro';
           category="European Solidarity Corps, International Volunteering"
           title="International Volunteer Sharing at OMSN"
           date="December 21, 2024"
-          imgSrc="https://via.placeholder.com/150x100/FFD700/000000?text=Article1"
+          imgSrc={articleImages.article1}
         />
         <ArticleCard
           category="European Solidarity Corps, Exhibition, Personal Project, International Volunteering"
           title="The Awakening of Creativity: An Artistic Journey through Fernando Pessoa."
           date="December 18, 2024"
-          imgSrc="https://via.placeholder.com/150x100/E6E6FA/000000?text=Article2"
+          imgSrc={articleImages.article2}
         />
         <!-- Add more articles if needed -->
       </div>
@@ -126,19 +155,12 @@ import ArticleCard from '../components/ArticleCard.astro';
     </section>
 
     <!-- Collaboration Section -->
-    <section class="collaboration container text-center">
+    <section id="contact" class="collaboration container text-center">
       <h2>In collaboration with:</h2>
       <div class="collaboration-logos grid grid-cols-6">
-        <!-- Placeholder logos -->
-        <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo1" alt="Partner Logo 1">
-        <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo2" alt="Partner Logo 2">
-        <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo3" alt="Partner Logo 3">
-        <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo4" alt="Partner Logo 4">
-        <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo5" alt="Partner Logo 5">
-        <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo6" alt="Partner Logo 6">
-         <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo7" alt="Partner Logo 7">
-        <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo8" alt="Partner Logo 8">
-        <img src="https://via.placeholder.com/100x50/cccccc/808080?text=Logo9" alt="Partner Logo 9">
+        {collaborationLogos.map((logoUrl, index) => (
+          <img src={logoUrl} alt={`Partner Logo ${index + 1} Placeholder`} />
+        ))}
       </div>
     </section>
 
@@ -151,8 +173,7 @@ import ArticleCard from '../components/ArticleCard.astro';
 <style>
 	/* Hero Section Styles */
   .hero-section {
-    /* Placeholder background - replace with actual image */
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x600/666666/FFFFFF?text=Hero+Background') no-repeat center center/cover;
+    /* Background image set inline via style attribute */
     height: 60vh;
     display: flex;
     align-items: center;
@@ -216,7 +237,7 @@ import ArticleCard from '../components/ArticleCard.astro';
     gap: 1rem;
     max-width: 500px;
     margin: 0 auto;
-  }```astro
+  }
   .newsletter-form input {
     flex-grow: 1;
     padding: 0.8rem 1rem;
@@ -273,8 +294,8 @@ import ArticleCard from '../components/ArticleCard.astro';
     max-height: 50px; /* Control logo height */
     width: auto;
     margin: 0 auto; /* Center logos within grid cells */
-    filter: grayscale(100%) brightness(1.5); /* Make placeholder logos less prominent */
-    opacity: 0.8;
+    /* Removed filter for placeholder images */
+    opacity: 0.9; /* Slightly less opaque */
   }
 
   /* Responsive Adjustments */
@@ -316,4 +337,3 @@ import ArticleCard from '../components/ArticleCard.astro';
   }
 
 </style>
-```
