@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+// Fetch all blog posts
+const blogPosts = await getCollection('blog');
+
+// Sort posts by date if you have a date in frontmatter
+// blogPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Placeholder image for articles without one
+const defaultArticleImg = 'https://picsum.photos/seed/defaultarticle/150/100';
+---
+
+<Layout title="Blog - Youth In The World">
+  <Header />
+
+  <main class="blog-page-container container">
+    <h1>Blog</h1>
+    <p>Read our latest articles and updates.</p>
+
+    <section class="articles-list">
+      <div class="grid grid-cols-2">
+        {blogPosts.map((post) => (
+          <ArticleCard
+            category={post.data.category || 'Uncategorized'} // Use frontmatter category or default
+            title={post.data.title || post.slug} // Use frontmatter title or slug
+            date={post.data.date ? new Date(post.data.date).toLocaleDateString() : 'No date'} // Format date or show 'No date'
+            imgSrc={post.data.imgSrc || defaultArticleImg} // Use frontmatter image or default
+          />
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .blog-page-container {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .blog-page-container h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .blog-page-container p {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #ccc;
+  }
+
+  .articles-list .grid {
+    gap: 2rem; /* Match gap from index page */
+  }
+
+  /* Responsive adjustments for the grid */
+  @media (max-width: 768px) {
+    .articles-list .grid-cols-2 {
+      grid-template-columns: 1fr; /* Stack articles on small screens */
+    }
+  }
+</style>
