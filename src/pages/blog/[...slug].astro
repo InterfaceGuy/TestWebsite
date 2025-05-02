@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+// 1. Generate a new page for every collection entry
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+// 2. When it's time to render, you can use the entry directly
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title || entry.slug}>
+  <Header />
+
+  <main class="blog-post-container container">
+    <article>
+      <header class="post-header">
+        <h1>{entry.data.title || entry.slug}</h1>
+        <p class="post-meta">
+          {entry.data.date ? new Date(entry.data.date).toLocaleDateString() : 'No date'}
+          {entry.data.category && ` | ${entry.data.category}`}
+        </p>
+        {entry.data.imgSrc && <img src={entry.data.imgSrc} alt={entry.data.title || entry.slug} class="post-image"/>}
+      </header>
+      <section class="post-content">
+        <Content />
+      </section>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .blog-post-container {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    max-width: 800px; /* Limit width for readability */
+  }
+
+  .post-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .post-header h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+  }
+
+  .post-meta {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .post-content {
+    line-height: 1.7;
+    color: #eee;
+  }
+
+  /* Basic styling for markdown content */
+  .post-content :global(p) {
+    margin-bottom: 1rem;
+  }
+  .post-content :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+   .post-content :global(h3) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+  }
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin-bottom: 1rem;
+    padding-left: 20px;
+  }
+  .post-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .post-content :global(blockquote) {
+    border-left: 4px solid var(--color-bg-alt);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #aaa;
+  }
+  .post-content :global(code) {
+    background-color: #333;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+  .post-content :global(pre) {
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+  .post-content :global(pre code) {
+    background-color: transparent;
+    padding: 0;
+  }
+  .post-content :global(a) {
+    color: var(--color-bg-alt); /* Link color */
+    text-decoration: underline;
+  }
+  .post-content :global(a:hover) {
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .post-header h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

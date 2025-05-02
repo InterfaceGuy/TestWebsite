@@ -30,6 +30,7 @@ const defaultArticleImg = 'https://picsum.photos/seed/defaultarticle/150/100';
             title={post.data.title || post.slug} // Use frontmatter title or slug
             date={post.data.date ? new Date(post.data.date).toLocaleDateString() : 'No date'} // Format date or show 'No date'
             imgSrc={post.data.imgSrc || defaultArticleImg} // Use frontmatter image or default
+            slug={post.slug} // Pass the slug to the ArticleCard
           />
         ))}
       </div>
