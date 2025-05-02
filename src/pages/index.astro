@@ -154,6 +154,17 @@ const heroBackgroundUrl = 'https://picsum.photos/seed/hero/1920/600'; // Placeho
       </div>
     </section>
 
+    <!-- Event Signup Section -->
+    <section id="event-signup" class="event-signup" style="background-color: var(--color-bg-alt);">
+      <div class="container text-center">
+        <h2>Sign Up for Our Next Event!</h2>
+        <p>Fill out the form below to register for our upcoming event.</p>
+        <div class="form-container">
+          <iframe src="https://forms.gle/VCsVFB3ywEDGqoJq6" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        </div>
+      </div>
+    </section>
+
     <!-- Collaboration Section -->
     <section id="contact" class="collaboration container text-center">
       <h2>In collaboration with:</h2>
@@ -279,6 +290,24 @@ const heroBackgroundUrl = 'https://picsum.photos/seed/hero/1920/600'; // Placeho
    .recent-articles .button:hover {
      background-color: rgba(255, 255, 255, 0.1);
    }
+
+  /* Event Signup Styles */
+  .event-signup h2 {
+    margin-bottom: 1rem;
+  }
+  .event-signup p {
+    margin-bottom: 2rem;
+  }
+  .event-signup .form-container {
+    max-width: 700px; /* Limit form width */
+    margin: 0 auto;
+    background-color: #fff; /* Google Form background is white */
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  .event-signup iframe {
+    display: block; /* Remove extra space below iframe */
+  }
 
 
   /* Collaboration Styles */
