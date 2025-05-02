@@ -47,6 +47,9 @@ const heroBackgroundUrl = 'https://picsum.photos/seed/hero/1920/600'; // Placeho
         <h1>Youth In The World</h1>
         <p>We share and promote volunteering and international mobility activities that promote learning and social transformation</p>
         <a href="#opportunities" class="button">Opportunities</a>
+        <!-- Temporary Admin Button -->
+        <a href="/admin" class="button admin-button-temp">Admin Page (Temporary)</a>
+        <!-- End Temporary Admin Button -->
       </div>
     </section>
 
@@ -191,13 +194,19 @@ const heroBackgroundUrl = 'https://picsum.photos/seed/hero/1920/600'; // Placeho
     justify-content: center;
     color: var(--color-text);
   }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Add gap between elements */
+  }
   .hero-content h1 {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0; /* Remove bottom margin */
   }
   .hero-content p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0; /* Remove bottom margin */
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -211,6 +220,18 @@ const heroBackgroundUrl = 'https://picsum.photos/seed/hero/1920/600'; // Placeho
    .hero-content .button:hover {
      background-color: #3a4a3a;
    }
+
+   /* Temporary Admin Button Style */
+   .admin-button-temp {
+     background-color: #555; /* Different color to stand out */
+     border: 1px solid #777;
+     font-size: 0.9rem;
+     padding: 0.5rem 1rem;
+   }
+   .admin-button-temp:hover {
+     background-color: #666;
+   }
+
 
   /* Area of Activity Styles */
   .area-activity h2 {

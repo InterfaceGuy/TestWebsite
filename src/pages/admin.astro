@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Admin CMS">
+  <main class="admin-container">
+    <h1>Minimal CMS</h1>
+    <p>Enter your GitHub Personal Access Token and Markdown content to create a new blog post.</p>
+
+    <form id="cms-form">
+      <div class="form-group">
+        <label for="pat">GitHub PAT:</label>
+        <input type="password" id="pat" required>
+        <small>Your token is used only for this session and is not stored.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="filename">Filename (e.g., my-new-post.md):</label>
+        <input type="text" id="filename" required>
+      </div>
+
+      <div class="form-group">
+        <label for="markdown-content">Markdown Content (including frontmatter):</label>
+        <textarea id="markdown-content" rows="15" required></textarea>
+      </div>
+
+      <button type="submit" class="button">Create Blog Post</button>
+      <p id="status-message"></p>
+    </form>
+  </main>
+</Layout>
+
+<style>
+  .admin-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #1a1a1a;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .admin-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .admin-container p {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ccc;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--color-text);
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="password"],
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #333;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: monospace;
+  }
+
+  .form-group small {
+    display: block;
+    margin-top: 0.5rem;
+    color: #aaa;
+    font-size: 0.8rem;
+  }
+
+  .admin-container .button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    background-color: var(--color-bg-alt);
+    border: none;
+  }
+
+  .admin-container .button:hover {
+    background-color: #3a4a3a;
+  }
+
+  #status-message {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+  }
+</style>
+
+<script is:inline>
+  const form = document.getElementById('cms-form');
+  const patInput = document.getElementById('pat');
+  const filenameInput = document.getElementById('filename');
+  const markdownInput = document.getElementById('markdown-content');
+  const statusMessage = document.getElementById('status-message');
+
+  // Replace with your GitHub username and repository name
+  const owner = 'InterfaceGuy'; // Get from astro.config.mjs site/base? No, need repo owner. Assuming InterfaceGuy for now.
+  const repo = 'TestWebsite'; // Get from astro.config.mjs base? No, need repo name. Assuming TestWebsite for now.
+  const branch = 'main'; // Or your default branch
+  const blogPostsDir = 'src/content/blog/'; // Directory to save blog posts
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const pat = patInput.value;
+    const filename = filenameInput.value;
+    const markdownContent = markdownInput.value;
+
+    if (!pat || !filename || !markdownContent) {
+      statusMessage.textContent = 'Please fill in all fields.';
+      statusMessage.style.color = 'red';
+      return;
+    }
+
+    statusMessage.textContent = 'Creating blog post...';
+    statusMessage.style.color = 'yellow';
+
+    const filePath = `${blogPostsDir}${filename}`;
+    const contentBase64 = btoa(unescape(encodeURIComponent(markdownContent))); // Base64 encode content
+
+    try {
+      // Check if file exists (optional, but good practice)
+      // const checkResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?ref=${branch}`, {
+      //   headers: {
+      //     'Authorization': `token ${pat}`,
+      //     'Accept': 'application/vnd.github.v3+json'
+      //   }
+      // });
+
+      // if (checkResponse.ok) {
+      //   statusMessage.textContent = `Error: File "${filename}" already exists.`;
+      //   statusMessage.style.color = 'red';
+      //   return;
+      // }
+
+
+      // Create the file
+      const createResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${pat}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `feat: Add new blog post: ${filename}`,
+          content: contentBase64,
+          branch: branch
+        })
+      });
+
+      if (createResponse.ok) {
+        statusMessage.textContent = `Blog post "${filename}" created successfully!`;
+        statusMessage.style.color = 'green';
+        form.reset(); // Clear the form
+      } else {
+        const errorData = await createResponse.json();
+        statusMessage.textContent = `Error creating blog post: ${errorData.message || createResponse.statusText}`;
+        statusMessage.style.color = 'red';
+      }
+
+    } catch (error) {
+      statusMessage.textContent = `An unexpected error occurred: ${error.message}`;
+      statusMessage.style.color = 'red';
+      console.error('GitHub API Error:', error);
+    }
+  });
+</script>
