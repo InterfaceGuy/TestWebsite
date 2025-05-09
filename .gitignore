@@ -1,2 +1,7 @@
 .aider*
 /.DS_Store
+/.DS_Store
+/TestWebsite.sublime-project
+/TestWebsite.sublime-workspace
+/.DS_Store
+/node_modules

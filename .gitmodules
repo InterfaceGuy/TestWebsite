@@ -1,0 +1,3 @@
+[submodule "src/submodules/MerkabaEarthMap"]
+	path = src/submodules/MerkabaEarthMap
+	url = https://github.com/InterfaceGuy/MerkabaEarthMap.git
