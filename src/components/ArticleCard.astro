@@ -4,6 +4,7 @@ interface Props {
   title: string;
   date: string;
   imgSrc: string;
+<<<<<<< HEAD
   slug: string; // Add slug to props
 }
 const { category, title, date, imgSrc, slug } = Astro.props;
@@ -18,6 +19,26 @@ const { category, title, date, imgSrc, slug } = Astro.props;
     </div>
   </div>
 </a>
+=======
+  href?: string; // Make href optional
+}
+const { category, title, date, imgSrc, href } = Astro.props;
+
+const Tag = href ? 'a' : 'div';
+const commonProps = {
+  class: "article-card",
+  ...(href && { href: Astro.props.href, target: Astro.props.href?.startsWith('http') ? '_blank' : undefined })
+};
+---
+<Tag {...commonProps}>
+  <img src={imgSrc} alt={title} class="article-img"/>
+  <div class="article-content">
+    <p class="article-category">{category}</p>
+    <h4 class="article-title">{title}</h4>
+    <p class="article-date">{date}</p>
+  </div>
+</Tag>
+>>>>>>> 5962fe0 (feat: Make ArticleCard component optionally linkable)
 
 <style>
   .article-card-link {
@@ -28,12 +49,26 @@ const { category, title, date, imgSrc, slug } = Astro.props;
 
   .article-card {
     background-color: #1a1a1a;
+    color: var(--color-text); /* Ensure text color is inherited for links */
+    text-decoration: none; /* Remove underline from link */
     border-radius: 8px;
     overflow: hidden;
     display: flex; /* Use flex for side-by-side layout */
     gap: 1rem;
     border: 1px solid var(--color-border);
+<<<<<<< HEAD
     transition: transform 0.2s ease-in-out; /* Add hover effect */
+=======
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  .article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    text-decoration: none; /* Ensure no underline on hover for the whole card */
+  }
+  .article-card .article-title:hover {
+    text-decoration: underline; /* Optionally underline title on hover if it's a link */
+>>>>>>> 5962fe0 (feat: Make ArticleCard component optionally linkable)
   }
 
   .article-card:hover {
