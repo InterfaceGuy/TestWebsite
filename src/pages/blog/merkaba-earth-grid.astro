@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MerkabaEarthMapApplet from '../../components/MerkabaEarthMapApplet.astro';
+import Header from '../../components/Header.astro'; // Assuming you have or want a header
+import Footer from '../../components/Footer.astro'; // Assuming you have or want a footer
+---
+
+<Layout title="The Merkaba Earth Grid - An Interactive Exploration">
+  <Header />
+  <main class="container">
+    <article>
+      <header>
+        <h1>The Merkaba, Sacred Geometry, and Earth's Energetic Grid</h1>
+        <p class="subtitle">An interactive journey into ancient mysteries and planetary energies.</p>
+      </header>
+      <section>
+        <h2>What is the Merkaba?</h2>
+        <p>
+          The Merkaba is a profound symbol in sacred geometry, often described as a
+          star tetrahedron – a three-dimensional Star of David. It's considered by
+          many spiritual traditions to be a divine light vehicle, an energy field
+          that can be activated around the human body. This field is believed to
+          facilitate spiritual ascension, interdimensional travel, and a deeper
+          connection with higher states of consciousness.
+        </p>
+      </section>
+      <section>
+        <h2>The Earth Grid Theory</h2>
+        <p>
+          Fascinating theories propose that the Merkaba's geometric pattern isn't
+          limited to personal energy fields but also maps onto the Earth itself,
+          forming a vast, interconnected energetic grid. According to these ideas,
+          key megalithic structures and sacred sites around the world – such as the
+          Great Pyramid of Giza, Stonehenge, Machu Picchu, and many others – are
+          not randomly placed. Instead, they are thought to be strategically
+          located at the vertices, nodes, or significant intersection points of
+          this planetary grid.
+        </p>
+        <p>
+          These sites may act as energetic hotspots, conduits, or amplifiers,
+          channeling and distributing cosmic and terrestrial energies across the
+          globe. The precise geometry of this grid is a subject of ongoing research
+          and speculation, often involving complex polyhedral shapes like the
+          icosahedron or dodecahedron, in addition to the star tetrahedron.
+        </p>
+      </section>
+      <section>
+        <h2>Explore the Merkaba Earth Map</h2>
+        <p>
+          Below is an interactive applet designed to help you visualize one
+          interpretation of the Merkaba Earth Map. Engage with the model to see
+          how these ancient structures might align and interconnect through this
+          geometric energy matrix.
+        </p>
+
+        <MerkabaEarthMapApplet />
+
+        <p>
+          This exploration encourages us to ponder the advanced knowledge potentially
+          possessed by ancient civilizations. Did they understand Earth's subtle
+          energies and cosmic principles in ways we are only beginning to rediscover?
+          What other secrets might this global energetic network hold?
+        </p>
+      </section>
+      <section>
+        <h2>Further Thoughts</h2>
+        <p>
+          While the concept of a Merkaba-based Earth grid is compelling, it's
+          important to approach it with a blend of open-mindedness and critical
+          thinking. The study of ley lines, sacred geometry, and archaeoastronomy
+          continues to evolve, offering new perspectives on our planet's hidden
+          dimensions and our ancestors' wisdom.
+        </p>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .container {
+    max-width: 900px; /* Slightly wider for blog content */
+    margin: 2rem auto; /* Add some top/bottom margin */
+    padding: 0 1rem; /* Keep horizontal padding */
+  }
+  article {
+    background-color: var(--color-bg-alt, #1a1a1a); /* Use a subtle background for the article */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border, #444);
+    padding-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.8rem; /* Adjust as per your global styles or preference */
+    color: var(--accent, #883aea); /* Use accent color */
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--accent-light, #e0cafa);
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 2rem;
+    color: var(--accent-light, #e0cafa);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border, #444);
+    padding-bottom: 0.5rem;
+  }
+  p {
+    margin-bottom: 1.2rem;
+    line-height: 1.7; /* Slightly more line height for readability */
+    font-size: 1.1rem;
+  }
+  section {
+    margin-bottom: 2rem; /* Add space between sections */
+    padding: 0; /* Override default section padding from global styles if any */
+  }
+  /* Ensure the applet container itself doesn't get unwanted global section padding */
+  section > MerkabaEarthMapApplet {
+    padding: 0;
+  }
+</style>
